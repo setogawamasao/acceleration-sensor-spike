@@ -7,10 +7,43 @@
   </head>
 
   <body>
+    <button id="start-button">スタート</button>
     <div id="txt">ここにデータを表示</div>
     <!-- データを表示するdiv要素 -->
 
     <script>
+      const requestDeviceMotionPermission = () => {
+        alert("計計測開始");
+        if (
+          DeviceMotionEvent &&
+          typeof DeviceMotionEvent.requestPermission === "function"
+        ) {
+          // iOS 13+ の Safari
+          // 許可を取得
+          DeviceMotionEvent.requestPermission()
+            .then((permissionState) => {
+              if (permissionState === "granted") {
+                // 許可を得られた場合、devicemotionをイベントリスナーに追加
+                window.addEventListener("devicemotion", (e) => {
+                  // devicemotionのイベント処理
+                });
+              } else {
+                // 許可を得られなかった場合の処理
+              }
+            })
+            .catch(console.error); // https通信でない場合などで許可を取得できなかった場合
+        } else {
+          // 上記以外のブラウザ
+        }
+      };
+
+      // ボタンクリックでrequestDeviceMotionPermission実行
+      const startButton = document.getElementById("start-button");
+      startButton.addEventListener(
+        "click",
+        requestDeviceMotionPermission,
+        false
+      );
       var aX = 0,
         aY = 0,
         aZ = 0; // 加速度の値を入れる変数を3個用意
