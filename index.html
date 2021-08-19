@@ -11,11 +11,6 @@
     <!-- データを表示するdiv要素 -->
 
     <script>
-      //. DeviceOrientationEvent オブジェクトが有効な環境か？　をチェック
-      if (window.DeviceOrientationEvent) {
-        //. DeviceOrientationEvent オブジェクトが有効な場合のみ、deviceorientation イベント発生時に deviceOrientaion 関数がハンドリングするよう登録
-        window.addEventListener("deviceorientation", deviceOrientation);
-      }
       var aX = 0,
         aY = 0,
         aZ = 0; // 加速度の値を入れる変数を3個用意
